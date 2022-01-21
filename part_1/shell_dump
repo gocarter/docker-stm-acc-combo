@@ -1,0 +1,138 @@
+gocarter@pop-os:~$ docker search gcc
+NAME                               DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+gcc                                The GNU Compiler Collection is a compiling s…   679       [OK]       
+rikorose/gcc-cmake                 Build on top off the official gcc image incl…   27                   [OK]
+arm64v8/gcc                        The GNU Compiler Collection is a compiling s…   7                    
+arm32v7/gcc                        The GNU Compiler Collection is a compiling s…   7                    
+randomdude/gcc-cross-x86_64-elf    GCC built to target x86_64-elf. Shamelessly …   5                    [OK]
+conanio/gcc7                                                                       2                    
+conanio/gcc9                                                                       2                    
+teeks99/gcc-ubuntu                 Versions of gcc running on ubuntu  The goal …   1                    [OK]
+conanio/gcc8                                                                       1                    
+rushmash/gcc-arm-embedded-docker   gcc-arm-none-eabi toolchain                     1                    [OK]
+ppc64le/gcc                        The GNU Compiler Collection is a compiling s…   1                    
+unikraft/gcc                                                                       1                    
+celiangarcia/gcc6-cmake            Cmake built on top of official gcc 6 image.     0                    
+celiangarcia/gcc7-cmake            Cmake built on top of official gcc 7 image.     0                    
+s390x/gcc                          The GNU Compiler Collection is a compiling s…   0                    
+trollin/gcc                                                                        0                    
+microblinkdev/gcc-devenv           GCC-based development environment               0                    
+etews/gcc-cmake-python             Gcc with cmake and python based on Debian       0                    
+celiangarcia/gcc8-cmake            Cmake built on top of official gcc 8 image.     0                    
+arm32v5/gcc                        The GNU Compiler Collection is a compiling s…   0                    
+amd64/gcc                          The GNU Compiler Collection is a compiling s…   0                    
+vcatechnology/gcc5-armv7hf         Specialization of conanio/gcc5-armv7hf          0                    
+conanio/gcc9-jnlp-slave                                                            0                    
+phanoix/gcconnex                   :latest image based off alpine                  0                    [OK]
+kernelci/gcc-10_arm                                                                0                    
+gocarter@pop-os:~$ docker search --filter "is-official=true" gcc
+NAME      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+gcc       The GNU Compiler Collection is a compiling s…   679       [OK]       
+gocarter@pop-os:~$ docker pull gcc
+Using default tag: latest
+latest: Pulling from library/gcc
+0e29546d541c: Pull complete 
+9b829c73b52b: Pull complete 
+cb5b7ae36172: Pull complete 
+6494e4811622: Pull complete 
+6f9f74896dfa: Pull complete 
+9e02d5ba8945: Pull complete 
+f26bedb21a7b: Pull complete 
+6584fc653633: Pull complete 
+bae0ff2cc62a: Pull complete 
+Digest: sha256:084eaedf8e3c51f3db939ad7ed2b1455ff9ce4705845a014fb9fe5577b35c901
+Status: Downloaded newer image for gcc:latest
+docker.io/library/gcc:latest
+gocarter@pop-os:~$ docker run gcc gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-linux-gnu/11.2.0/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: /usr/src/gcc/configure --build=x86_64-linux-gnu --disable-multilib --enable-languages=c,c++,fortran,go
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 11.2.0 (GCC) 
+gocarter@pop-os:~$ ls
+'Calibre Library'   Documents   Music     Pictures   Repos       Videos
+ Desktop            Downloads   MyRepos   Public     Templates
+gocarter@pop-os:~$ ls MyRepos/
+baremetal                    engineering_thesis  nucleo_cmake_template
+CmakeNucleoTemplate          HackOnline2020      nucleo-make
+cmake_tutorial               LinetechArchi       suziccesory
+coding-interview-university  my-julia-workspace
+gocarter@pop-os:~$ cd MyRepos/
+gocarter@pop-os:~/MyRepos$ ls
+baremetal                    engineering_thesis  nucleo_cmake_template
+CmakeNucleoTemplate          HackOnline2020      nucleo-make
+cmake_tutorial               LinetechArchi       suziccesory
+coding-interview-university  my-julia-workspace
+gocarter@pop-os:~/MyRepos$ yes | rm -r LinetechArchi
+gocarter@pop-os:~/MyRepos$ ls
+baremetal                    engineering_thesis     nucleo-make
+CmakeNucleoTemplate          HackOnline2020         suziccesory
+cmake_tutorial               my-julia-workspace
+coding-interview-university  nucleo_cmake_template
+gocarter@pop-os:~/MyRepos$ mkdir embedded_docker_dev; cd embedded_docker_dev
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialised empty Git repository in /home/gocarter/MyRepos/embedded_docker_dev/.git/
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ git status 
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ vim main.c
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker run -v $(pw
+pw-cat         pw-dump        pw-midiplay    pw-reserve
+pwck           pwdx           pw-midirecord  pw-top
+pw-cli         pw-link        pw-mon         pwunconv
+pwconv         pw-loopback    pw-play        
+pwd            pw-metadata    pw-profiler    
+pw-dot         pw-mididump    pw-record      
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker run -v $(pwd):/usr/src/myapp -w /usr/src/myapp gcc gcc -o hello main.c
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ ls
+hello  main.c
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ ./hello 
+Hello from Docker
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ file hello
+hello: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, not stripped
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker run -v $(pwd):/usr/src/myapp -w /usr/src/myapp gcc ./hello
+Hello from Docker
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ vim Makefile
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker run -v $(pwd):/usr/src/myapp -w /usr/src/myapp gcc make
+make: 'hello' is up to date.
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker run -v $(pwd):/usr/src/myapp -w /usr/src/myapp gcc ./hello
+Hello from Docker
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker run -v $(pwd):/usr/src/myapp -w /usr/src/myapp gcc make clean
+rm hello
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker container ls -a
+CONTAINER ID   IMAGE         COMMAND                 CREATED          STATUS                      PORTS     NAMES
+de95e6466717   gcc           "make clean"            3 minutes ago    Exited (0) 3 minutes ago              blissful_kilby
+1191eff2318e   gcc           "./hello"               3 minutes ago    Exited (0) 3 minutes ago              dazzling_carson
+d11e59d030fb   gcc           "make"                  3 minutes ago    Exited (0) 3 minutes ago              jovial_mirzakhani
+c9533c62a669   gcc           "./hello"               6 minutes ago    Exited (0) 6 minutes ago              festive_chatelet
+fe785b9b93c2   gcc           "gcc -o hello main.c"   8 minutes ago    Exited (0) 8 minutes ago              fervent_bouman
+a05e6ec3f273   gcc           "gcc -v"                15 minutes ago   Exited (0) 15 minutes ago             elegant_noether
+da6f759d64ee   hello-world   "/hello"                7 days ago       Exited (0) 7 days ago                 silly_nightingale
+af27ae7e6059   hello-world   "/hello"                7 days ago       Exited (0) 7 days ago                 elegant_lichterman
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ docker rm $(docker ps -a -q)
+de95e6466717
+1191eff2318e
+d11e59d030fb
+c9533c62a669
+fe785b9b93c2
+a05e6ec3f273
+da6f759d64ee
+af27ae7e6059
+gocarter@pop-os:~/MyRepos/embedded_docker_dev$ 
+
