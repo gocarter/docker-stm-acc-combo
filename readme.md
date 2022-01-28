@@ -4,3 +4,11 @@
 
 Have fun!
 
+## Definition of Done
+
+This project will be finnished when:
+Using the docker methode I will make device a (STM32 + accelerometer) capable of reading acc values,
+and streaming them live to PC, using USB<-\>UART converter.
+Values should be in SI unit.
+No RTOS is required.
+
