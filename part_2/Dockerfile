@@ -1,4 +1,5 @@
 FROM gcc:11.2.0
+ENV REFRESHED_AT 4-02-2022
 RUN apt-get -qq update \
 	&& apt-get -y install git cmake
 WORKDIR /usr/project
