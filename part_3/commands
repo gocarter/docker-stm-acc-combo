@@ -1,0 +1,4 @@
+$ docker run --rm -v $(pwd):/usr/project gocarter/gcc-arm-cmake:0.4 cmake -S . -B build/ -DCMAKE_TOOLCHAIN_FILE=toolchain-STM32F407.cmake
+$ docker run --rm -v $(pwd):/usr/project gocarter/gcc-arm-cmake:0.4 cmake --build build --target clean
+$ docker run --rm -v $(pwd):/usr/project gocarter/gcc-arm-cmake:0.4 cmake --build build
+

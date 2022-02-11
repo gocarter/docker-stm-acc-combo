@@ -1,9 +1,11 @@
 FROM gcc:10.3.0
 
-ENV REFRESHED_AT 4-02-2022
+ENV REFRESHED_AT 11-02-2022
 
 RUN apt-get -qq update \
-	&& apt-get -y install git cmake
+	&& apt-get -y install git python3-pip
+
+RUN pip3 install --system --compile cmake
 
 # Set up a tools dev directory
 WORKDIR /home/dev
