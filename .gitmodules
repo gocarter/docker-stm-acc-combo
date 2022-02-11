@@ -1,0 +1,3 @@
+[submodule "part_3/cmake-blog-1"]
+	path = part_3/cmake-blog-1
+	url = git@github.com:feabhas/cmake-blog-1.git
